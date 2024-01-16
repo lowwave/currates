@@ -1,10 +1,13 @@
 import { AppProvider } from "providers/app";
 import { CurrencyRatesTable } from "./features/currency-rates";
+import { Layout } from "@/components/layout/layout";
 
 function App() {
   return (
     <AppProvider>
-      <CurrencyRatesTable />
+      <Layout>
+        <CurrencyRatesTable />
+      </Layout>
     </AppProvider>
   );
 }

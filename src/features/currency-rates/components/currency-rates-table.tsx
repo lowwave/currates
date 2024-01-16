@@ -1,5 +1,6 @@
 import { Table } from "@/components/table";
 import { useExchangeRates } from "@/api";
+import { Box } from "@/components/box/box";
 
 export const CurrencyRatesTable = () => {
   const { data, isError, isLoading } = useExchangeRates();
@@ -13,27 +14,29 @@ export const CurrencyRatesTable = () => {
   }
 
   return (
-    <Table>
-      <Table.THead>
-        <Table.Tr>
-          <Table.Th>Country</Table.Th>
-          <Table.Th>Currency</Table.Th>
-          <Table.Th>Amount</Table.Th>
-          <Table.Th>Rate</Table.Th>
-        </Table.Tr>
-      </Table.THead>
-      <Table.TBody>
-        {data?.map((rate) => (
-          <Table.Tr key={rate.code}>
-            <Table.Td>{rate.country}</Table.Td>
-            <Table.Td>
-              {rate.code} - {rate.currency}
-            </Table.Td>
-            <Table.Td>{rate.amount}</Table.Td>
-            <Table.Td>{rate.rate}</Table.Td>
+    <Box>
+      <Table>
+        <Table.THead>
+          <Table.Tr>
+            <Table.Th>Country</Table.Th>
+            <Table.Th>Currency</Table.Th>
+            <Table.Th>Amount</Table.Th>
+            <Table.Th>Rate</Table.Th>
           </Table.Tr>
-        ))}
-      </Table.TBody>
-    </Table>
+        </Table.THead>
+        <Table.TBody>
+          {data?.map((rate) => (
+            <Table.Tr key={rate.code}>
+              <Table.Td>{rate.country}</Table.Td>
+              <Table.Td>
+                {rate.code} - {rate.currency}
+              </Table.Td>
+              <Table.Td>{rate.amount}</Table.Td>
+              <Table.Td>{rate.rate}</Table.Td>
+            </Table.Tr>
+          ))}
+        </Table.TBody>
+      </Table>
+    </Box>
   );
 };

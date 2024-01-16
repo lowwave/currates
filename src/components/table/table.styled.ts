@@ -12,7 +12,10 @@ export const THead = styled.thead`
 export const TBody = styled.tbody``;
 
 export const Tr = styled.tr`
-  border-bottom: 0.0625rem solid #e0e0e0;
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.colors.border};
+  tbody > &:last-child {
+    border-bottom: none;
+  }
 `;
 
 export const Th = styled.th`
