@@ -2,7 +2,8 @@ import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { persister, queryClient } from "@/lib/react-query";
-import { GlobalStyle } from "@/global-styles";
+import { GlobalStyle } from "./theme/global-styles";
+import { ThemePreferenceProvider } from "./theme/theme";
 
 const ErrorFallback = () => {
   return <div>Oops, something went wrong</div>;
@@ -21,7 +22,7 @@ export const AppProvider = ({ children }: Props) => {
           persistOptions={{ persister }}
         >
           <GlobalStyle />
-          {children}
+          <ThemePreferenceProvider>{children}</ThemePreferenceProvider>
         </PersistQueryClientProvider>
       </ErrorBoundary>
     </React.Suspense>
