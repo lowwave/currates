@@ -1,9 +1,7 @@
+import { AppProvider } from "providers/app";
+
 function App() {
-    return (
-    <>
-     Rates app 
-    </>
-  )
+  return <AppProvider>rates</AppProvider>;
 }
 
-export default App
+export default App;
