@@ -6,19 +6,17 @@ import { defineConfig, loadEnv, ProxyOptions } from 'vite';
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
-  let serverProxy: Record<string, ProxyOptions> | undefined;
+  // let serverProxy: Record<string, ProxyOptions> | undefined;
 
-  if (process.env.NODE_ENV === 'development') {
-    serverProxy = {
-      '/api': {
-        changeOrigin: true,
-        rewrite: (apiPath) => apiPath.replace(/^\/api/, ''),
-        target: 'http://www.cnb.cz',
-      },
-    };
-  }
-
-  console.log(serverProxy);
+  // if (process.env.NODE_ENV === 'development') {
+  //   serverProxy = {
+  //     '/api': {
+  //       changeOrigin: true,
+  //       rewrite: (apiPath) => apiPath.replace(/^\/api/, ''),
+  //       target: 'http://www.cnb.cz',
+  //     },
+  //   };
+  // }
 
   return {
     define: {
@@ -31,8 +29,8 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, './src'),
       },
     },
-    server: {
-      proxy: serverProxy,
-    },
+    // server: {
+    //   proxy: serverProxy,
+    // },
   };
 });
