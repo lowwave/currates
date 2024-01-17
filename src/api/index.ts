@@ -9,7 +9,7 @@ import {
 import { parseRates } from '@/utils/get-rates';
 
 export const API_URL =
-  'http://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt';
+  'https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt';
 
 export type RatesDataT = {
   rates: Array<RateItemT>;
