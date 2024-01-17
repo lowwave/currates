@@ -6,17 +6,7 @@ import { defineConfig, loadEnv } from 'vite';
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
-  // let serverProxy: Record<string, ProxyOptions> | undefined;
-
-  // if (process.env.NODE_ENV === 'development') {
-  //   serverProxy = {
-  //     '/api': {
-  //       changeOrigin: true,
-  //       rewrite: (apiPath) => apiPath.replace(/^\/api/, ''),
-  //       target: 'http://www.cnb.cz',
-  //     },
-  //   };
-  // }
+  const isDevMode = process.env.NODE_ENV === 'development';
 
   return {
     define: {
@@ -29,8 +19,14 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, './src'),
       },
     },
-    // server: {
-    //   proxy: serverProxy,
-    // },
+    server: {
+      proxy:  {
+        '/api': {
+          changeOrigin: true,
+          rewrite: (apiPath) => apiPath.replace(/^\/api/, ''),
+          target: isDevMode ? '/api' : 'http://www.cnb.cz',
+        },
+      },
+    },
   };
 });

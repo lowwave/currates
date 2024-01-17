@@ -8,8 +8,8 @@ import {
 } from '@/utils/get-last-updated-date';
 import { parseRates } from '@/utils/get-rates';
 
-export const API_URL =
-  'https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt';
+const apiBaseUrl = import.meta.env.PROD ? 'https://www.cnb.cz' : '/api';
+export const API_URL = `${apiBaseUrl}/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt`;
 
 export type RatesDataT = {
   rates: Array<RateItemT>;
