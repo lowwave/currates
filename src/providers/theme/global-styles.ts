@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
     *, *::before, *::after{
@@ -54,6 +54,6 @@ export const GlobalStyle = createGlobalStyle`
         -moz-osx-font-smoothing: grayscale; /* Makes font look better on mac */
         height: 100%; /* Makes the body element full screen */
         scroll-behavior: smooth; /* Makes normal scrolling smooth */
-        font-family: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji";
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
     }
 `;

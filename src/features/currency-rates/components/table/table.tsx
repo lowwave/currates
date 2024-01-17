@@ -1,12 +1,13 @@
-import React from "react";
-import { StyledTable } from "./table.styled";
+import React from 'react';
+
 import {
   TableBody,
   TableDataCell,
   TableHead,
   TableHeaderCell,
   TableRow,
-} from "./table.components";
+} from './table.components';
+import { StyledTable } from './table.styled';
 
 type Props = {
   children: React.ReactNode;

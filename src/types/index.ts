@@ -5,3 +5,5 @@ export type RateItemT = {
   currency: string;
   rate: number;
 };
+
+export type CurrencyCodeT = RateItemT['code'];

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledLayout = styled.div`
   background: ${({ theme }) => theme.colors.background};
@@ -12,7 +12,7 @@ export const StyledLayout = styled.div`
 
 export const ContentContainer = styled.div`
   flex: 1;
-  max-width: 1600px;
+  max-width: 1000px;
   padding-left: 4%;
   padding-right: 4%;
 `;

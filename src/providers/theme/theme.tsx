@@ -1,9 +1,10 @@
-import React, { useCallback, useMemo } from "react";
-import { ThemeProvider } from "styled-components";
-import { dark, light } from "./theme-tokens";
-import { GlobalStyle } from "./global-styles";
+import React, { useCallback, useMemo } from 'react';
 
-type ThemeTypeT = "light" | "dark";
+import { ThemeProvider } from 'styled-components';
+
+import { dark, light } from './theme-tokens';
+
+type ThemeTypeT = 'light' | 'dark';
 type ThemeContextT = {
   theme: ThemeTypeT;
   toggleTheme: () => void;
@@ -15,12 +16,12 @@ const themesMap = {
 } as const;
 
 const ThemeContextDefaultValues: ThemeContextT = {
-  theme: "light",
+  theme: 'light',
   toggleTheme: () => {},
 };
 
 const ThemePreferenceContext = React.createContext<ThemeContextT>(
-  ThemeContextDefaultValues
+  ThemeContextDefaultValues,
 );
 
 export const ThemePreferenceProvider = ({
@@ -28,12 +29,12 @@ export const ThemePreferenceProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [currentTheme, setCurrentTheme] = React.useState<ThemeTypeT>("light");
+  const [currentTheme, setCurrentTheme] = React.useState<ThemeTypeT>('light');
 
   const theme = useMemo(() => themesMap[currentTheme], [currentTheme]);
 
   const toggleTheme = useCallback(() => {
-    setCurrentTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    setCurrentTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   }, []);
 
   const contextValue = React.useMemo(
@@ -41,7 +42,7 @@ export const ThemePreferenceProvider = ({
       theme: currentTheme,
       toggleTheme,
     }),
-    [currentTheme, toggleTheme]
+    [currentTheme, toggleTheme],
   );
 
   return (

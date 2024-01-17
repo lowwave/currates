@@ -1,5 +1,6 @@
-import React from "react";
-import { ContentContainer, StyledLayout } from "./layout.styled";
+import React from 'react';
+
+import { ContentContainer, StyledLayout } from './layout.styled';
 
 type Props = {
   children: React.ReactNode;

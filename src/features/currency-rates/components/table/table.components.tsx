@@ -1,5 +1,6 @@
-import React from "react";
-import { TBody, THead, Td, Th, Tr } from "./table.styled";
+import React from 'react';
+
+import { TBody, Td, Th, THead, Tr } from './table.styled';
 
 type Props = {
   children: React.ReactNode;

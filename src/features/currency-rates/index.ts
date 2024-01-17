@@ -1,1 +1,1 @@
-export { CurrencyRatesTable } from "./components/currency-rates-table";
+export { CurrencyRatesTable } from './currency-rates';

@@ -1,7 +1,7 @@
 module.exports = {
-  extends: ["@nkzw"],
+  extends: ['@nkzw'],
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       node: {
         paths: ['src'],
         extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
