@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
           rewrite: (apiPath) => apiPath.replace(/^\/api/, ''),
           target: isDevMode ? '/api' : 'http://www.cnb.cz',
+          secure: false,
         },
       },
     },
