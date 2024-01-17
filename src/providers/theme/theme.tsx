@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import { ThemeProvider } from 'styled-components';
 
@@ -33,9 +33,9 @@ export const ThemePreferenceProvider = ({
 
   const theme = useMemo(() => themesMap[currentTheme], [currentTheme]);
 
-  const toggleTheme = useCallback(() => {
+  const toggleTheme = () => {
     setCurrentTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  }, []);
+  };
 
   const contextValue = React.useMemo(
     () => ({
@@ -50,4 +50,16 @@ export const ThemePreferenceProvider = ({
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemePreferenceContext.Provider>
   );
+};
+
+export const useThemePreference = (): ThemeContextT => {
+  const context = React.useContext(ThemePreferenceContext);
+
+  if (context === undefined) {
+    throw new Error(
+      'useThemePreference must be used within a ThemePreferenceProvider',
+    );
+  }
+
+  return context;
 };
