@@ -1,24 +1,29 @@
 import path from 'node:path';
 
 import react from '@vitejs/plugin-react';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig, loadEnv, ProxyOptions } from 'vite';
 
-export default ({ mode }) => {
+export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
-  let serverProxy = {};
+  let serverProxy: Record<string, ProxyOptions> | undefined;
 
   if (process.env.NODE_ENV === 'development') {
     serverProxy = {
       '/api': {
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (apiPath) => apiPath.replace(/^\/api/, ''),
         target: 'http://www.cnb.cz',
       },
     };
   }
 
-  return defineConfig({
+  console.log(serverProxy);
+
+  return {
+    define: {
+      __APP_ENV__: process.env,
+    },
     base: '/currates',
     plugins: [react()],
     resolve: {
@@ -29,5 +34,5 @@ export default ({ mode }) => {
     server: {
       proxy: serverProxy,
     },
-  });
-};
+  };
+});
