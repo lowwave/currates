@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 
 import { ThemeProvider } from 'styled-components';
 
+import { useLocalStorage } from '@/hooks/use-local-storage';
+
 import { dark, light } from './theme-tokens';
 
 type ThemeTypeT = 'light' | 'dark';
@@ -29,12 +31,22 @@ export const ThemePreferenceProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [currentTheme, setCurrentTheme] = React.useState<ThemeTypeT>('light');
+  const [currentTheme, setCurrentTheme] = useLocalStorage<ThemeTypeT>(
+    'themePreference',
+    'light',
+  );
 
-  const theme = useMemo(() => themesMap[currentTheme], [currentTheme]);
+  const theme = useMemo(() => {
+    if (currentTheme in themesMap) {
+      return themesMap[currentTheme];
+    } else {
+      return themesMap.light;
+    }
+  }, [currentTheme]);
 
   const toggleTheme = () => {
-    setCurrentTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    const isDarkMode = currentTheme === 'dark';
+    isDarkMode ? setCurrentTheme('light') : setCurrentTheme('dark');
   };
 
   const contextValue = React.useMemo(

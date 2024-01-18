@@ -4,7 +4,11 @@ import { useCurrencyRates } from '@/api';
 
 import { NumberInput } from './components/number-input';
 import { Select } from './components/select';
-import { ConverterContainer, InputWrapper } from './converter.styled';
+import {
+  ConverterContainer,
+  ConverterError,
+  InputWrapper,
+} from './converter.styled';
 import { CurrencyType, currencyTypeMap } from './types';
 import {
   calculateConvertedAmount,
@@ -13,6 +17,7 @@ import {
 } from './utils';
 
 export const Converter = () => {
+  console.log('CNVERTER RENDERED')
   const { data, isError, isLoading } = useCurrencyRates();
   const [domesticCurrencyValue, setDomesticCurrencyValue] =
     useState<string>('');
@@ -24,7 +29,11 @@ export const Converter = () => {
   }
 
   if (isError) {
-    return <div>Error</div>;
+    return (
+      <ConverterContainer hasError>
+        <ConverterError>Error loading converter</ConverterError>
+      </ConverterContainer>
+    );
   }
 
   if (!data) {

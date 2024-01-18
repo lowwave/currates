@@ -8,8 +8,11 @@ export const getForeignCurrencyRate = (
   code: CurrencyCodeT,
 ) => {
   if (!data) return undefined;
-  console.log('calculating rate for: ', code);
-  return data.rates.find((rate) => rate.code === code)?.rate;
+  const rateItem = data.rates.find((rate) => rate.code === code);
+  if (!rateItem) return undefined;
+
+  const { rate, amount } = rateItem;
+  return rate / amount;
 };
 
 export const calculateConvertedAmount = (

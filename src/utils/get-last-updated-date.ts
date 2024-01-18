@@ -1,12 +1,12 @@
 export type LastUpdatedT = {
   lastUpdatedDate: string;
-  issue: number;
+  order: number;
 };
 
-const regex = /(\d{2}\.\d{2}\.\d{4}) #(\d+)/;
+const regex = /(\d{2} \w{3} \d{4}) #(\d+)/;
 
 // parses the first line of the data string and returns an object with the date and issue number
-// date string format: 01.01.2021 #1
+// data string format: 01 Jan 2021 #123
 export const getLastUpdatedDate = (data: string): LastUpdatedT | null => {
   if (!data) {
     return null;
@@ -24,6 +24,6 @@ export const getLastUpdatedDate = (data: string): LastUpdatedT | null => {
 
   return {
     lastUpdatedDate: date,
-    issue: Number(issue),
+    order: Number(issue),
   };
 };

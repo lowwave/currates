@@ -5,7 +5,11 @@ export const ToggleContainer = styled.div`
   justify-content: center;
   position: absolute;
   top: 2rem;
-  right: 2rem;
+  right: 4rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    right: 2rem;
+  }
 `;
 
 export const ToggleButton = styled.button`
@@ -23,5 +27,10 @@ export const ToggleButton = styled.button`
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 `;
