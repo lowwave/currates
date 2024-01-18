@@ -70,6 +70,7 @@ export const Converter = () => {
     <ConverterContainer>
       <InputWrapper>
         <NumberInput
+          label="For"
           value={domesticCurrencyValue}
           onChange={handleInputChange}
           name={currencyTypeMap.domesticCurrency}
@@ -79,6 +80,7 @@ export const Converter = () => {
       </InputWrapper>
       <InputWrapper>
         <NumberInput
+          label="You get"
           value={foreignCurrencyValue}
           onChange={handleInputChange}
           name={currencyTypeMap.foreignCurrency}
