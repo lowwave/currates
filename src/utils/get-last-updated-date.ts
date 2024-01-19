@@ -14,7 +14,6 @@ export const getLastUpdatedDate = (data: string): LastUpdatedT | null => {
 
   const lines = data.split('\n');
   const dateString = lines[0];
-  let a;
 
   const match = dateString.match(regex);
   if (!match) {
