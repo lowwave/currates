@@ -1,4 +1,4 @@
-import { useThemePreference } from '@/providers/theme/theme';
+import { useThemePreference } from '@/providers/theme';
 
 import { ToggleButton, ToggleContainer } from './toggle.styled';
 

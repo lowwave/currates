@@ -7,7 +7,7 @@ import { useLocalStorage } from '@/hooks/use-local-storage';
 import { dark, light } from './theme-tokens';
 
 type ThemeTypeT = 'light' | 'dark';
-type ThemeContextT = {
+export type ThemeContextT = {
   theme: ThemeTypeT;
   toggleTheme: () => void;
 };
@@ -22,7 +22,7 @@ const ThemeContextDefaultValues: ThemeContextT = {
   toggleTheme: () => {},
 };
 
-const ThemePreferenceContext = React.createContext<ThemeContextT>(
+export const ThemePreferenceContext = React.createContext<ThemeContextT>(
   ThemeContextDefaultValues,
 );
 
@@ -64,16 +64,4 @@ export const ThemePreferenceProvider = ({
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemePreferenceContext.Provider>
   );
-};
-
-export const useThemePreference = (): ThemeContextT => {
-  const context = React.useContext(ThemePreferenceContext);
-
-  if (context === undefined) {
-    throw new Error(
-      'useThemePreference must be used within a ThemePreferenceProvider',
-    );
-  }
-
-  return context;
 };
