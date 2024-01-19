@@ -34,10 +34,11 @@ export const Select = ({
   return (
     <SelectContainer>
       <SelectInput
+        {...rest}
+        role='combobox'
         value={value}
         defaultValue={defaultValue}
         disabled={disabled}
-        {...rest}
       >
         {options?.map((option) => (
           <option key={option} value={option}>

@@ -4,3 +4,8 @@ export const currencyTypeMap = {
 } as const;
 
 export type CurrencyType = keyof typeof currencyTypeMap;
+
+export type ForeignCurrencyRateT = {
+  rate: number;
+  amount: number;
+};

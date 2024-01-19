@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ConverterContainer = styled.div<{ hasError?: boolean }>`
   width: 100%;
@@ -10,8 +10,13 @@ export const ConverterContainer = styled.div<{ hasError?: boolean }>`
   border-radius: ${({ theme }) => theme.borderRadius};
   border: 2px solid
     ${({ theme, hasError }) =>
-      hasError ? theme.color.error : theme.colors.primary};
+      hasError ? theme.colors.error : theme.colors.primary};
   height: ${({ theme }) => theme.inputHeight};
+  ${({ theme, hasError }) =>
+    hasError &&
+    css`
+      background-color: ${theme.colors.error};
+    `}
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 90vw;
@@ -38,7 +43,7 @@ export const ConverterError = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.xl};
+  color: ${({ theme }) => theme.colors.background};
+  font-size: ${({ theme }) => theme.fontSize.xl};
   margin-top: 0.5rem;
 `;

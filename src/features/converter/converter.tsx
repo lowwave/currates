@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useCurrencyRates } from '@/api';
 
@@ -17,7 +17,6 @@ import {
 } from './utils';
 
 export const Converter = () => {
-  console.log('CNVERTER RENDERED')
   const { data, isError, isLoading } = useCurrencyRates();
   const [domesticCurrencyValue, setDomesticCurrencyValue] =
     useState<string>('');
@@ -40,20 +39,18 @@ export const Converter = () => {
     return null;
   }
 
-  const calculateAndSetValues = (
+  const updateInputValues = (
     from: CurrencyType,
     value: string,
-    rate: number,
+    convertedAmount: string,
   ) => {
     const inputValue = sanitizeInputValue(value);
 
     if (from === currencyTypeMap.domesticCurrency) {
       setDomesticCurrencyValue(inputValue);
-      const convertedAmount = calculateConvertedAmount(from, value, rate);
       setForeignCurrencyValue(convertedAmount);
     } else if (from === currencyTypeMap.foreignCurrency) {
       setForeignCurrencyValue(inputValue);
-      const convertedAmount = calculateConvertedAmount(from, value, rate);
       setDomesticCurrencyValue(convertedAmount);
     }
   };
@@ -61,17 +58,27 @@ export const Converter = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const rate = getForeignCurrencyRate(data, selectedCurrency);
-    calculateAndSetValues(name as CurrencyType, value, rate || 1);
+    const convertedAmount = calculateConvertedAmount(
+      name as CurrencyType,
+      value,
+      rate,
+    );
+    updateInputValues(name as CurrencyType, value, convertedAmount);
   };
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { value } = e.target;
-    setSelectedCurrency(value);
-    const rate = getForeignCurrencyRate(data, value);
-    calculateAndSetValues(
+    const { value: currencyCode } = e.target;
+    setSelectedCurrency(currencyCode);
+    const rate = getForeignCurrencyRate(data, currencyCode);
+    const convertedAmount = calculateConvertedAmount(
       currencyTypeMap.domesticCurrency,
       domesticCurrencyValue,
-      rate || 1,
+      rate,
+    );
+    updateInputValues(
+      currencyTypeMap.domesticCurrency,
+      domesticCurrencyValue,
+      convertedAmount,
     );
   };
 
@@ -80,6 +87,7 @@ export const Converter = () => {
       <InputWrapper>
         <NumberInput
           label="For"
+          id={currencyTypeMap.domesticCurrency}
           value={domesticCurrencyValue}
           onChange={handleInputChange}
           name={currencyTypeMap.domesticCurrency}
@@ -90,6 +98,7 @@ export const Converter = () => {
       <InputWrapper>
         <NumberInput
           label="You get"
+          id={currencyTypeMap.foreignCurrency}
           value={foreignCurrencyValue}
           onChange={handleInputChange}
           name={currencyTypeMap.foreignCurrency}

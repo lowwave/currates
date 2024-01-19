@@ -1,32 +1,31 @@
 import { RatesDataT } from '@/api';
 import { CurrencyCodeT } from '@/types';
 
-import { CurrencyType, currencyTypeMap } from '../types';
+import { CurrencyType, currencyTypeMap, ForeignCurrencyRateT } from '../types';
 
 export const getForeignCurrencyRate = (
   data: RatesDataT | undefined,
   code: CurrencyCodeT,
-) => {
-  if (!data) return undefined;
-  const rateItem = data.rates.find((rate) => rate.code === code);
-  if (!rateItem) return undefined;
+): ForeignCurrencyRateT => {
+  const rateItem = data && data.rates.find((rate) => rate.code === code);
+  if (!rateItem) return { rate: 0, amount: 0 };
 
-  const { rate, amount } = rateItem;
-  return rate / amount;
+  return { rate: rateItem.rate, amount: rateItem.amount };
 };
 
 export const calculateConvertedAmount = (
   from: CurrencyType,
   value: string,
-  rate: number,
+  foreignCurrencyRate: ForeignCurrencyRateT,
 ) => {
   const valueAsNumber = Number(value);
+  const { rate, amount } = foreignCurrencyRate;
 
   switch (from) {
     case currencyTypeMap.domesticCurrency:
-      return (valueAsNumber / rate).toFixed(2);
+      return ((valueAsNumber / rate) * amount).toFixed(2);
     case currencyTypeMap.foreignCurrency:
-      return (valueAsNumber * rate).toFixed(2);
+      return ((valueAsNumber / amount) * rate).toFixed(2);
     default:
       return '0.00';
   }
