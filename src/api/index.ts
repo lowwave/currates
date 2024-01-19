@@ -6,9 +6,10 @@ import {
   getLastUpdatedDate,
   LastUpdatedT,
 } from '@/utils/get-last-updated-date';
-import { parseRates } from '@/utils/get-rates';
+import { getRates } from '@/utils/get-rates';
 
-const apiBaseUrl = import.meta.env.PROD ? 'https://www.cnb.cz' : '/api';
+
+const apiBaseUrl = (import.meta.env.PROD || import.meta.env.MODE === 'test') ? 'https://www.cnb.cz' : '/api';
 export const API_URL = `${apiBaseUrl}/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt`;
 
 export type RatesDataT = {
@@ -26,13 +27,9 @@ const getExchangeRates = async (): Promise<RatesDataT> => {
   }
   const rawData = await response.text();
 
-  console.log(rawData);
-
-  const rates = parseRates(rawData);
+  const rates = getRates(rawData);
   const currencyCodes = getCurrencyCodes(rates);
   const lastUpdated = getLastUpdatedDate(rawData);
-
-  console.log({ rates, currencyCodes, lastUpdated });
 
   return { rates, currencyCodes, lastUpdated };
 };
