@@ -86,28 +86,28 @@ export const Converter = () => {
     <ConverterContainer>
       <InputWrapper>
         <NumberInput
-          label="For"
           id={currencyTypeMap.domesticCurrency}
-          value={domesticCurrencyValue}
-          onChange={handleInputChange}
+          label="For"
           name={currencyTypeMap.domesticCurrency}
+          onChange={handleInputChange}
           placeholder="0.00"
+          value={domesticCurrencyValue}
         />
         <Select defaultValue="CZK" disabled options={['CZK']} />
       </InputWrapper>
       <InputWrapper>
         <NumberInput
-          label="You get"
           id={currencyTypeMap.foreignCurrency}
-          value={foreignCurrencyValue}
-          onChange={handleInputChange}
+          label="You get"
           name={currencyTypeMap.foreignCurrency}
+          onChange={handleInputChange}
           placeholder="0.00"
+          value={foreignCurrencyValue}
         />
         <Select
-          value={selectedCurrency}
-          options={data.currencyCodes}
           onChange={handleSelectChange}
+          options={data.currencyCodes}
+          value={selectedCurrency}
         />
       </InputWrapper>
     </ConverterContainer>

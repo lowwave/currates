@@ -11,17 +11,17 @@ type Props = {
   label?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-export const NumberInput = ({ name, label, id, ...rest }: Props) => {
+export const NumberInput = ({ id, label, name, ...rest }: Props) => {
   return (
     <InputContainer>
       <Label htmlFor={name}>{label}</Label>
       <StyledNumberInput
         {...rest}
-        role="textbox"
-        type="text"
+        id={id}
         inputMode="numeric"
         name={name}
-        id={id}
+        role="textbox"
+        type="text"
       />
     </InputContainer>
   );

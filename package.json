@@ -12,9 +12,23 @@
     "build": "tsc && vite build",
     "format": "prettier --write .",
     "lint:format": "prettier --cache --check .",
-    "lint": "eslint .",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest",
     "preview": "vite preview"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "yarn format"
+    ],
+    "*.{json,md,yml}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
   },
   "browserslist": [
     ">0.2%",
@@ -44,7 +58,9 @@
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "husky": "^8.0.3",
     "jsdom": "^23.2.0",
+    "lint-staged": "^15.2.0",
     "msw": "^2.1.2",
     "prettier": "^3.2.4",
     "typescript": "^5.2.2",

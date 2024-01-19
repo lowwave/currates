@@ -6,6 +6,6 @@ export const currencyTypeMap = {
 export type CurrencyType = keyof typeof currencyTypeMap;
 
 export type ForeignCurrencyRateT = {
-  rate: number;
   amount: number;
+  rate: number;
 };

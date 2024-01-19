@@ -22,7 +22,7 @@ export const AppProvider = ({ children }: Props) => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <PersistQueryClientProvider
           client={queryClient}
-          persistOptions={{ persister, maxAge: 1000 * 60 * 60 * 12 }}
+          persistOptions={{ maxAge: 1000 * 60 * 60 * 12, persister }}
         >
           <GlobalStyle />
           <ThemePreferenceProvider>{children}</ThemePreferenceProvider>

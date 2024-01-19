@@ -15,9 +15,9 @@ const apiBaseUrl =
 export const API_URL = `${apiBaseUrl}/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt`;
 
 export type RatesDataT = {
-  rates: Array<RateItemT>;
   currencyCodes: Array<RateItemT['code']>;
   lastUpdated: LastUpdatedT | null;
+  rates: Array<RateItemT>;
 };
 
 const getExchangeRates = async (): Promise<RatesDataT> => {
@@ -33,7 +33,7 @@ const getExchangeRates = async (): Promise<RatesDataT> => {
   const currencyCodes = getCurrencyCodes(rates);
   const lastUpdated = getLastUpdatedDate(rawData);
 
-  return { rates, currencyCodes, lastUpdated };
+  return { currencyCodes, lastUpdated, rates };
 };
 
 export const useCurrencyRates = () => {

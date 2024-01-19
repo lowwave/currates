@@ -18,11 +18,11 @@ export const CurrencyRatesTable = () => {
     return null;
   }
 
-  const { rates, lastUpdated } = data;
+  const { lastUpdated, rates } = data;
 
   return (
     <>
-      <DateCard role="heading" lastUpdated={lastUpdated} />
+      <DateCard lastUpdated={lastUpdated} role="heading" />
       <Table>
         <Table.THead>
           <Table.Tr>

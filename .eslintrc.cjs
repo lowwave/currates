@@ -1,5 +1,16 @@
 module.exports = {
+  root: true,
+  env: { browser: true, es2020: true },
   extends: ['@nkzw'],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['react-refresh'],
+  rules: {
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
+  },
   settings: {
     'import/resolver': {
       node: {
@@ -8,10 +19,6 @@ module.exports = {
       },
       typescript: {
         project: './tsconfig.json',
-      },
-      alias: {
-        map: [['@', path.resolve(__dirname, './src')]],
-        extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
       },
     },
   },

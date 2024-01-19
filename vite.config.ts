@@ -5,30 +5,30 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: '/currates',
     define: {
       __APP_ENV__: process.env,
     },
-    base: '/currates',
     plugins: [react()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
       },
     },
-    test: {
-      global: true,
-      environment: 'jsdom',
-      setupFiles: './src/test/setup-test.ts',
-    },
     server: {
       proxy: {
         '/api': {
           changeOrigin: true,
           rewrite: (apiPath) => apiPath.replace(/^\/api/, ''),
-          target: 'https://www.cnb.cz',
           secure: false,
+          target: 'https://www.cnb.cz',
         },
       },
+    },
+    test: {
+      environment: 'jsdom',
+      global: true,
+      setupFiles: './src/test/setup-test.ts',
     },
   };
 });

@@ -8,9 +8,9 @@ export const getForeignCurrencyRate = (
   code: CurrencyCodeT,
 ): ForeignCurrencyRateT => {
   const rateItem = data && data.rates.find((rate) => rate.code === code);
-  if (!rateItem) return { rate: 0, amount: 0 };
+  if (!rateItem) {return { amount: 0, rate: 0 };}
 
-  return { rate: rateItem.rate, amount: rateItem.amount };
+  return { amount: rateItem.amount, rate: rateItem.rate };
 };
 
 export const calculateConvertedAmount = (
@@ -19,7 +19,7 @@ export const calculateConvertedAmount = (
   foreignCurrencyRate: ForeignCurrencyRateT,
 ) => {
   const valueAsNumber = Number(value);
-  const { rate, amount } = foreignCurrencyRate;
+  const { amount, rate } = foreignCurrencyRate;
 
   switch (from) {
     case currencyTypeMap.domesticCurrency:

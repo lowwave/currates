@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { ThemeProvider } from 'styled-components';
 
@@ -13,8 +13,8 @@ type ThemeContextT = {
 };
 
 const themesMap = {
-  light,
   dark,
+  light,
 } as const;
 
 const ThemeContextDefaultValues: ThemeContextT = {
@@ -37,17 +37,19 @@ export const ThemePreferenceProvider = ({
   );
 
   const theme = useMemo(() => {
-    if (currentTheme in themesMap) {
-      return themesMap[currentTheme];
-    } else {
-      return themesMap.light;
-    }
+    return currentTheme in themesMap
+      ? themesMap[currentTheme]
+      : themesMap.light;
   }, [currentTheme]);
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     const isDarkMode = currentTheme === 'dark';
-    isDarkMode ? setCurrentTheme('light') : setCurrentTheme('dark');
-  };
+    if (isDarkMode) {
+      setCurrentTheme('light');
+    } else {
+      setCurrentTheme('dark');
+    }
+  }, [currentTheme, setCurrentTheme]);
 
   const contextValue = React.useMemo(
     () => ({

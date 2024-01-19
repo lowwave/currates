@@ -4,10 +4,6 @@ export const useLocalStorage = <T>(
   key: string,
   initialValue: T,
 ): [T, (value: T) => void] => {
-  if (typeof window === 'undefined') {
-    return [initialValue, () => {}];
-  }
-
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
       const item = window.localStorage.getItem(key);
@@ -21,10 +17,8 @@ export const useLocalStorage = <T>(
 
   const setValue = (value: T): void => {
     try {
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      setStoredValue(value);
+      window.localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);

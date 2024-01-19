@@ -9,10 +9,10 @@ export const ConverterContainer = styled.div<{ hasError?: boolean }>`
   padding: 3rem 1rem;
   border-radius: ${({ theme }) => theme.borderRadius};
   border: 2px solid
-    ${({ theme, hasError }) =>
+    ${({ hasError, theme }) =>
       hasError ? theme.colors.error : theme.colors.primary};
   height: ${({ theme }) => theme.inputHeight};
-  ${({ theme, hasError }) =>
+  ${({ hasError, theme }) =>
     hasError &&
     css`
       background-color: ${theme.colors.error};

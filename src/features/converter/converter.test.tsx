@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { useCurrencyRates } from '@/api';
 import { providerWrapper, renderWithProviders } from '@/test/providers';
 
-import { Converter } from '.';
+import { Converter } from './converter';
 
 describe('Converter feature', () => {
   it('should render the converter with default values', async () => {
