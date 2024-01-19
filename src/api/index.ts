@@ -8,8 +8,10 @@ import {
 } from '@/utils/get-last-updated-date';
 import { getRates } from '@/utils/get-rates';
 
-
-const apiBaseUrl = (import.meta.env.PROD || import.meta.env.MODE === 'test') ? 'https://www.cnb.cz' : '/api';
+const apiBaseUrl =
+  import.meta.env.PROD || import.meta.env.MODE === 'test'
+    ? 'https://www.cnb.cz'
+    : '/api';
 export const API_URL = `${apiBaseUrl}/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt`;
 
 export type RatesDataT = {

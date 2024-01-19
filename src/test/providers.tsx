@@ -13,7 +13,11 @@ const createTestQueryClient = () => {
   });
 };
 
-export const providerWrapper = ({ children }: { children: React.ReactNode }) => {
+export const providerWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const queryClient = createTestQueryClient();
 
   return (

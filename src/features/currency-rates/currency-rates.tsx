@@ -22,7 +22,7 @@ export const CurrencyRatesTable = () => {
 
   return (
     <>
-      <DateCard lastUpdated={lastUpdated} />
+      <DateCard role="heading" lastUpdated={lastUpdated} />
       <Table>
         <Table.THead>
           <Table.Tr>

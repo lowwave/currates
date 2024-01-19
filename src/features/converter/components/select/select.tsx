@@ -35,7 +35,7 @@ export const Select = ({
     <SelectContainer>
       <SelectInput
         {...rest}
-        role='combobox'
+        role="combobox"
         value={value}
         defaultValue={defaultValue}
         disabled={disabled}
