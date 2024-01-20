@@ -1,6 +1,8 @@
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 import { DefaultOptions, QueryClient } from '@tanstack/react-query';
 
+export const CACHE_MAX_AGE = 1000 * 60 * 60 * 12; // 12 hours
+
 export const persister = createSyncStoragePersister({
   storage: localStorage,
 });

@@ -3,7 +3,7 @@ import React from 'react';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { persister, queryClient } from '@/lib/react-query';
+import { CACHE_MAX_AGE, persister, queryClient } from '@/lib/react-query';
 
 import { GlobalStyle, ThemePreferenceProvider } from './theme';
 
@@ -21,7 +21,7 @@ export const AppProvider = ({ children }: Props) => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <PersistQueryClientProvider
           client={queryClient}
-          persistOptions={{ maxAge: 1000 * 60 * 60 * 12, persister }}
+          persistOptions={{ maxAge: CACHE_MAX_AGE, persister }}
         >
           <GlobalStyle />
           <ThemePreferenceProvider>{children}</ThemePreferenceProvider>

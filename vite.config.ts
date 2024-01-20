@@ -15,16 +15,6 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, './src'),
       },
     },
-    server: {
-      proxy: {
-        '/api': {
-          changeOrigin: true,
-          rewrite: (apiPath) => apiPath.replace(/^\/api/, ''),
-          secure: false,
-          target: 'https://www.cnb.cz',
-        },
-      },
-    },
     test: {
       environment: 'jsdom',
       global: true,
