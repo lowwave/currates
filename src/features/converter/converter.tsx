@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { useCurrencyRates } from '@/api';
+import { Skeleton } from '@/components/skeleton';
 
 import { NumberInput } from './components/number-input';
 import { Select } from './components/select';
@@ -24,7 +25,7 @@ export const Converter = () => {
   const [selectedCurrency, setSelectedCurrency] = useState<string>('EUR');
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Skeleton height="6rem" />;
   }
 
   if (isError) {

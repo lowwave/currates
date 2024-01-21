@@ -1,4 +1,5 @@
 import { useCurrencyRates } from '@/api';
+import { Skeleton } from '@/components/skeleton';
 
 import { DateCard } from './components/date-card/date-card';
 import { Table } from './components/table';
@@ -7,7 +8,12 @@ export const CurrencyRatesTable = () => {
   const { data, isError, isLoading } = useCurrencyRates();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <Skeleton height="4rem" my="1.5rem" />
+        <Skeleton height="100vh" />
+      </>
+    );
   }
 
   if (isError) {
