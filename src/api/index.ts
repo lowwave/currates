@@ -11,7 +11,7 @@ import { getRates } from '@/utils/get-rates';
 export const API_URL =
   'https://corsproxy.io/?' +
   encodeURIComponent(
-    'https://www.cnb.cz/en/financial_markets/foreign_exchange_market/exchange_rate_fixing/daily.txt',
+    'https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt',
   );
 
 export type RatesDataT = {
