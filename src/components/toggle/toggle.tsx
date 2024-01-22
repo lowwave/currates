@@ -6,7 +6,9 @@ const SunIcon = () => (
   <svg
     aria-hidden="true"
     fill="none"
+    height="2rem"
     viewBox="0 0 20 20"
+    width="2rem"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -23,7 +25,9 @@ const MoonIcon = () => (
   <svg
     aria-hidden="true"
     fill="none"
+    height="2rem"
     viewBox="0 0 18 20"
+    width="2rem"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
