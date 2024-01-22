@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "outDir": "dist/server",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["server/**/*.ts"]
+}

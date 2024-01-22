@@ -5,7 +5,11 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/currates',
+    base: '/',
+    build: {
+      manifest: true,
+      outDir: 'dist',
+    },
     define: {
       __APP_ENV__: process.env,
     },
@@ -14,6 +18,10 @@ export default defineConfig(() => {
       alias: {
         '@': path.resolve(__dirname, './src'),
       },
+    },
+    server: {
+      host: '0.0.0.0',
+      port: 5174,
     },
     test: {
       environment: 'jsdom',

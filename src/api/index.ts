@@ -8,11 +8,7 @@ import {
 } from '@/utils/get-last-updated-date';
 import { getRates } from '@/utils/get-rates';
 
-export const API_URL =
-  'https://corsproxy.io/?' +
-  encodeURIComponent(
-    'https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt',
-  );
+export const API_URL = '/api';
 
 export type RatesDataT = {
   currencyCodes: Array<RateItemT['code']>;

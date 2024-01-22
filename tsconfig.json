@@ -27,9 +27,9 @@
     },
 
     // types
-    "types": ["@testing-library/jest-dom"],
+    // "types": ["@testing-library/jest-dom"],
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["src/*.ts", "src/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }],
 }
