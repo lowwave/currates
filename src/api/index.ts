@@ -8,7 +8,7 @@ import {
 } from '@/utils/get-last-updated-date';
 import { getRates } from '@/utils/get-rates';
 
-export const API_URL = '/api';
+export const API_URL = `${import.meta.env.TEST ? 'http://localhost:8080' : ''}/api`;
 
 export type RatesDataT = {
   currencyCodes: Array<RateItemT['code']>;

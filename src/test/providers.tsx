@@ -1,7 +1,9 @@
+import React from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 
-import { ThemePreferenceProvider } from '@/providers/theme/theme';
+import { ThemePreferenceProvider } from '@/providers/theme';
 
 const createTestQueryClient = () => {
   return new QueryClient({
